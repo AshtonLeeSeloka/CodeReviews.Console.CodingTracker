@@ -17,3 +17,4 @@
 ## Lessons Learnt
 
 ## Resources
+* Seperation of concerns [Article](https://www.thecsharpacademy.com/article/30005/separation-of-concerns-csharp)
