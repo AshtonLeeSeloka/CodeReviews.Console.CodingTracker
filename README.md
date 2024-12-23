@@ -20,3 +20,4 @@
 * Seperation of concerns [Article](https://www.thecsharpacademy.com/article/30005/separation-of-concerns-csharp)
 * OOP [Crash Course](https://www.thecsharpacademy.com/course/1/article/1/500000/false)
 * Spectre Console [Documentation](https://spectreconsole.net/)
+* [Dapper](https://www.learndapper.com/)
