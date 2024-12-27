@@ -1,5 +1,5 @@
 ﻿using Spectre.Console;
-using static CodingTracker.AshtonLeeSeloka.Enums.Enums;
+using static CodingTracker.AshtonLeeSeloka.Models.MenuItems;
 
 namespace CodingTracker.AshtonLeeSeloka.UserInterface;
 
@@ -34,10 +34,6 @@ internal class UserInterface
 					Environment.Exit(0);
 					break;
 			}
-		
-		
-		
 		}
-	
 	}
 }
