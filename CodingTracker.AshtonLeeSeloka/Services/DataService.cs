@@ -23,7 +23,7 @@ namespace Services
 																Id INTEGER PRIMARY KEY AUTOINCREMENT,
 																StartTime TEXT,
 																EndTime TEXT,
-																Duration TEXT)";
+																Duration INTEGER)";
 					tableCmd.ExecuteNonQuery();
 				}
 			} 
@@ -36,6 +36,16 @@ namespace Services
 			}
 		
 		}
+
+		public void Insert() 
+		{
+
+		
+		}
+
+
+
+
 
 	}
 }
