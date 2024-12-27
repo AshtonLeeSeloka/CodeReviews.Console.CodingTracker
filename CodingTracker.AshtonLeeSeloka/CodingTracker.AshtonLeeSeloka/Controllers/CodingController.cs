@@ -25,11 +25,12 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			var endDate = AnsiConsole.Ask<string>("[green]Enter Session End (yyyy-mm-dd HH:mm:ss)[/]");
 			int test = 5;
 			_dataService.Insert(startDate, endDate, test);
+		}
 
-
-
-			
-
+		public void viewData() 
+		{
+			_dataService.View();
+		
 		}
 	}
 }

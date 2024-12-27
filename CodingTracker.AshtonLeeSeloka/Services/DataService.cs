@@ -2,12 +2,14 @@
 using ServiceContracts;
 using System.Configuration;
 using Dapper;
+using CodingTracker.AshtonLeeSeloka.Models;
 
 namespace Services
 {
 	public class DataService : IDataService
 	{
 		private string? _DBConnectionString = ConfigurationManager.AppSettings.Get("DBConnectionString");
+		private List<CodingSession> Sessions = new List<CodingSession>();
 
 
 		/// <summary>
@@ -41,7 +43,8 @@ namespace Services
 
 		public void Delete()
 		{
-			throw new NotImplementedException();
+
+
 		}
 
 		public void Insert(string initial, string final, int period)
@@ -49,11 +52,35 @@ namespace Services
 			var sqlCommand = "INSERT INTO Coding_Sessions (StartTime, EndTime, Duration) VALUES (@StartTime, @EndTime, @Duration)";
 			var connection = new SqliteConnection(_DBConnectionString);
 			connection.Execute(sqlCommand, new { StartTime = initial, EndTime = final, Duration = period});
+			Console.WriteLine("Entry inserted Succesfully Press Any Key to exit");
+			Console.ReadKey();
 		}
 
 		public void Update()
 		{
 			throw new NotImplementedException();
+		}
+
+		public void View()
+		{
+			
+			var sqlCommand = "SELECT * FROM Coding_Sessions";
+			var connection = new SqliteConnection(_DBConnectionString);
+			var codingSessions = connection.Query<CodingSession>(sqlCommand);
+
+			foreach (var codingSession in codingSessions) 
+			{
+				//Console.WriteLine($"ID: {codingSession.Id}, StartTime: {codingSession.StartTime}, EndTime: {codingSession.EndTime}, Duration: {codingSession.Duration}");
+				Sessions.Add(new CodingSession()
+				{
+					Id = codingSession.Id,
+					StartTime = codingSession.StartTime,
+					EndTime = codingSession.EndTime,
+					Duration = codingSession.Duration,
+				});
+			}
+			Console.ReadKey();
+
 		}
 	}
 }

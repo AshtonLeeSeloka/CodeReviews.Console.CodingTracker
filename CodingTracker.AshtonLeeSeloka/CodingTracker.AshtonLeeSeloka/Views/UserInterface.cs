@@ -11,8 +11,10 @@ internal class UserInterface
 	{
 		CodingController controller = new CodingController();
 
+
 		while (true) 
 		{
+			AnsiConsole.Clear();
 			var userSelection = AnsiConsole.Prompt(
 				new SelectionPrompt<MenuOptions>()
 				.Title("[blue]Coding Tracker Selection Menu[/]")
@@ -22,6 +24,7 @@ internal class UserInterface
 			switch (userSelection) 
 			{
 				case MenuOptions.View_Coding_Sessions:
+					controller.viewData();
 					break;
 				case MenuOptions.Insert_New_Session:
 					controller.InsertSession();
