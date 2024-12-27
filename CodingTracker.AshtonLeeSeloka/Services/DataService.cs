@@ -1,9 +1,11 @@
 ﻿using Microsoft.Data.Sqlite;
+using ServiceContracts;
 using System.Configuration;
+using Dapper;
 
 namespace Services
 {
-	public class DataService
+	public class DataService : IDataService
 	{
 		private string? _DBConnectionString = ConfigurationManager.AppSettings.Get("DBConnectionString");
 
@@ -37,15 +39,21 @@ namespace Services
 		
 		}
 
-		public void Insert() 
+		public void Delete()
 		{
-
-		
+			throw new NotImplementedException();
 		}
 
+		public void Insert(string initial, string final, int period)
+		{
+			var sqlCommand = "INSERT INTO Coding_Sessions (StartTime, EndTime, Duration) VALUES (@StartTime, @EndTime, @Duration)";
+			var connection = new SqliteConnection(_DBConnectionString);
+			connection.Execute(sqlCommand, new { StartTime = initial, EndTime = final, Duration = period});
+		}
 
-
-
-
+		public void Update()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
