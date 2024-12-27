@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace CodingTracker.AshtonLeeSeloka.Controllers
 {
-	internal class CodingController
+	public class CodingController
 	{
+
+		public CodingController()
+		{
+		
+		}
+
 	}
 }
