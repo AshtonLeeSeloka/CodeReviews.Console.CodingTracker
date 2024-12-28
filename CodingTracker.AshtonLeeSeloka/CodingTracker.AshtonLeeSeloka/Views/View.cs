@@ -11,7 +11,7 @@ namespace CodingTracker.AshtonLeeSeloka.Views
 {
 	public class View
 	{
-		public void ViewSessions(List<CodingSession> sessions) 
+		public void DisplaySessionView(List<CodingSession> sessions) 
 		{
 			Console.Clear();
 			List<CodingSession> codingSessions =sessions;
@@ -38,6 +38,15 @@ namespace CodingTracker.AshtonLeeSeloka.Views
 			AnsiConsole.WriteLine("\nPress any Key to exit");
 			Console.ReadKey();
 		}
+		public CodingSession DeleteSessionView(List<CodingSession> sessions) 
+		{
+			CodingSession SessionToDelete = AnsiConsole.Prompt(
+			new SelectionPrompt<CodingSession>()
+			.Title("Select Session to [red]Remove[/]")
+			.UseConverter(s => $"[yellow]Session ID: {s.Id}, Start Time: {s.StartTime}, End Time: {s.EndTime} with duration of {s.Duration} minutes[/]")
+			.AddChoices(sessions));
 
+			return SessionToDelete;
+		}
 	}
 }
