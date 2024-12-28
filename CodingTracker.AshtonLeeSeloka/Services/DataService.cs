@@ -6,7 +6,7 @@ using CodingTracker.AshtonLeeSeloka.Models;
 
 namespace Services
 {
-	public class DataService : IDataService
+	public class DataService 
 	{
 		private string? _DBConnectionString = ConfigurationManager.AppSettings.Get("DBConnectionString");
 		private List<CodingSession> Sessions = new List<CodingSession>();
@@ -61,8 +61,10 @@ namespace Services
 			throw new NotImplementedException();
 		}
 
-		public void View()
+		public List<CodingSession> ViewSessions()
 		{
+
+			Sessions.Clear();
 			
 			var sqlCommand = "SELECT * FROM Coding_Sessions";
 			var connection = new SqliteConnection(_DBConnectionString);
@@ -70,7 +72,7 @@ namespace Services
 
 			foreach (var codingSession in codingSessions) 
 			{
-				//Console.WriteLine($"ID: {codingSession.Id}, StartTime: {codingSession.StartTime}, EndTime: {codingSession.EndTime}, Duration: {codingSession.Duration}");
+				
 				Sessions.Add(new CodingSession()
 				{
 					Id = codingSession.Id,
@@ -79,7 +81,8 @@ namespace Services
 					Duration = codingSession.Duration,
 				});
 			}
-			Console.ReadKey();
+
+			return Sessions;
 
 		}
 	}

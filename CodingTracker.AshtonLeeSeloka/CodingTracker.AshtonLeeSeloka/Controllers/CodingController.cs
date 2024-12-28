@@ -29,7 +29,7 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 
 		public void viewData() 
 		{
-			_dataService.View();
+			_dataService.ViewSessions();
 		
 		}
 	}

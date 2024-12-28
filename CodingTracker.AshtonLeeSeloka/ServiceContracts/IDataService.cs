@@ -6,7 +6,7 @@
 		public void Insert(string initial,string final, int period);
 		public void Delete();
 		public void Update();
-		public void View();
+		public List<CodingSession> ViewSessions()
 
 	}
 }
