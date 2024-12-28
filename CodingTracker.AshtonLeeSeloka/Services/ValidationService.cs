@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,25 +10,19 @@ namespace Services
 {
 	internal class ValidationService
 	{
-		public bool DateValidation(string message) 
+		public string dateFormat = "yyyy-mm-dd HH:mm:ss";
+		CultureInfo culture = new CultureInfo("en-UK");
+
+
+
+		public bool DateValidation(string date) 
 		{
-			while (true) 
-			{
-				try 
-				{
-
-					
-				}
-				catch 
-				{
-					break;
-				
-				}
-			
-			}
-
-			return false;
-		
+			if(DateTime.TryParseExact(date,dateFormat,culture,DateTimeStyles.None,out _))
+				return true;
+			else
+				return false;
 		}
+
+		 
 	}
 }

@@ -6,11 +6,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Services;
+using static CodingTracker.AshtonLeeSeloka.Models.MenuItems;
 
 namespace CodingTracker.AshtonLeeSeloka.Views
 {
 	public class View
 	{
+		public MenuItems.MenuInsert InsertSessionView() 
+		{
+			var selectedOption = AnsiConsole.Prompt(
+				new SelectionPrompt<MenuInsert>()
+				.Title("[green]How Would you like to record this session?[/]")
+				.AddChoices(Enum.GetValues<MenuInsert>())
+				);
+			return selectedOption;
+		}
+
 		public void DisplaySessionView(List<CodingSession> sessions) 
 		{
 			Console.Clear();
@@ -38,6 +49,7 @@ namespace CodingTracker.AshtonLeeSeloka.Views
 			AnsiConsole.WriteLine("\nPress any Key to exit");
 			Console.ReadKey();
 		}
+
 		public CodingSession DeleteSessionView(List<CodingSession> sessions) 
 		{
 			CodingSession SessionToDelete = AnsiConsole.Prompt(
@@ -45,7 +57,6 @@ namespace CodingTracker.AshtonLeeSeloka.Views
 			.Title("Select Session to [red]Remove[/]")
 			.UseConverter(s => $"[yellow]Session ID: {s.Id}, Start Time: {s.StartTime}, End Time: {s.EndTime} with duration of {s.Duration} minutes[/]")
 			.AddChoices(sessions));
-
 			return SessionToDelete;
 		}
 

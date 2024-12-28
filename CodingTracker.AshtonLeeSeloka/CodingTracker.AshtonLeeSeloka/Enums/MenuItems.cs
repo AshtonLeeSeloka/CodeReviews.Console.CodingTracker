@@ -1,6 +1,6 @@
 ﻿namespace CodingTracker.AshtonLeeSeloka.Models;
 
-internal class MenuItems
+public class MenuItems
 {
     internal enum MenuOptions
     {
@@ -12,9 +12,10 @@ internal class MenuItems
         End_Application
     }
 
-    internal enum MenuInsert
+    public enum MenuInsert
     {
-        Start_Timer,
-        Record_Previous_Session
+        Manually_Record_Session,
+		Start_Timer,
+        Back
     }
 }

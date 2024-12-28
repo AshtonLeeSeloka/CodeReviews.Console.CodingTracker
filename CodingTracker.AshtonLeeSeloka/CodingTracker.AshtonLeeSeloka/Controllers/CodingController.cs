@@ -5,6 +5,7 @@ using ServiceContracts;
 using Services;
 using Spectre.Console;
 using System.Collections;
+using static CodingTracker.AshtonLeeSeloka.Models.MenuItems;
 
 
 namespace CodingTracker.AshtonLeeSeloka.Controllers
@@ -17,10 +18,25 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 		public void InsertSession()
 		{
 			Console.Clear();
-			var startDate = AnsiConsole.Ask<string>("[green]Enter Session start (yyyy-mm-dd HH:mm:ss)[/]");
-			var endDate = AnsiConsole.Ask<string>("[green]Enter Session End (yyyy-mm-dd HH:mm:ss)[/]");
-			int test = 5;
-			_dataService.Insert(startDate, endDate, test);
+			var selection = _view.InsertSessionView();
+
+			switch (selection) 
+			{
+				case MenuInsert.Manually_Record_Session:
+					Console.WriteLine("smile bitch");
+					Console.ReadKey();
+					break;
+				case MenuInsert.Start_Timer:
+					break;
+				case MenuInsert.Back:
+					break;
+			}
+
+
+			//var startDate = AnsiConsole.Ask<string>("[green]Enter Session start (yyyy-mm-dd HH:mm:ss)[/]");
+			//var endDate = AnsiConsole.Ask<string>("[green]Enter Session End (yyyy-mm-dd HH:mm:ss)[/]");
+			//int test = 5;
+			//_dataService.Insert(startDate, endDate, test);
 		}
 
 		public void viewData() 
