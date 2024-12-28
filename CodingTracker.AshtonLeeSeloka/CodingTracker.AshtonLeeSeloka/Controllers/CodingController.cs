@@ -27,15 +27,12 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			Console.Clear();
 			List<CodingSession> codingSessions =_dataService.GetAllSessions();
 			_view.DisplaySessionView(codingSessions);
-			
 		}
 		public void DeleteSession()
 		{
 			List<CodingSession> codingSessions = _dataService.GetAllSessions();
 			CodingSession sessionToDelete = _view.DeleteSessionView(codingSessions);
-
-	
-
+			_dataService.Delete(sessionToDelete);
 		}
 	
 	

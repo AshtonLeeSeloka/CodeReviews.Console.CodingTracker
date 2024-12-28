@@ -41,10 +41,16 @@ namespace Services
 		
 		}
 
-		public void Delete()
+		public void Delete(CodingSession session)
 		{
+			var sqlCommand = "DELETE FROM coding_Sessions WHERE Id = @ID";
+			var connection = new SqliteConnection(_DBConnectionString);
+			connection.Execute(sqlCommand, new { ID = session.Id });
 
 
+			Console.WriteLine("Deletion of Coding session succesful, Type any Key to exit");
+			Console.ReadLine();
+			
 		}
 
 		public void Insert(string startTime, string endTime, int duration)
