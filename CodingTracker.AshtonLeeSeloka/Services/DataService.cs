@@ -84,11 +84,11 @@ namespace Services
 
 			string newStartTime =AnsiConsole.Ask<string>("[green]Enter Updated Session start (yyyy-mm-dd HH:mm:ss)[/]");
 			string newEndTime = AnsiConsole.Ask<string>("[green][green]Enter Updated Session End (yyyy-mm-dd HH:mm:ss)[/][/]");
-			int Duration = _CalculationsService.GetDuration(newStartTime, newEndTime);
+			//int Duration = _CalculationsService.GetDuration(newStartTime, newEndTime);
 
 			var sqlCommand = "UPDATE coding_Sessions SET StartTime = @StartTime,EndTime = @EndTime, Duration = @Duration WHERE Id = @ID ";
 			var connection = new SqliteConnection(_DBConnectionString);
-			connection.Execute(sqlCommand, new { ID = session.Id, StartTime  = newStartTime, EndTime = newEndTime, Duration = Duration });
+			connection.Execute(sqlCommand, new { ID = session.Id, StartTime  = newStartTime, EndTime = newEndTime/*, Duration = Duration*/ });
 
 			Console.WriteLine("\nUpdating of Coding session succesful, Type any Key to exit");
 			Console.ReadLine();

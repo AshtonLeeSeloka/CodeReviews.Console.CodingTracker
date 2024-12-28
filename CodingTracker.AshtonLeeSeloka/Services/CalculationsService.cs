@@ -8,9 +8,11 @@ namespace Services
 {
 	public class CalculationsService
 	{
-		public int GetDuration(string startDate, string endDate) 
+		public float GetDuration(DateTime startDate, DateTime endDate) 
 		{
-			return 0;
+			float time = Convert.ToInt32((endDate-startDate).TotalHours);
+			Console.WriteLine(time);
+			return time;
 		
 		}
 	}

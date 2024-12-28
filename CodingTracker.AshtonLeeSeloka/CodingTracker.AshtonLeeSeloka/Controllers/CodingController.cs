@@ -14,6 +14,7 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 	{
 		private DataService _dataService = new DataService();
 		private ValidationService _validation = new ValidationService();
+		private CalculationsService _calculationsService = new CalculationsService();
 		private View _view = new View();
 
 		public void InsertSession()
@@ -37,32 +38,48 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 		public void ManualInsert() 
 		{
 			
-			
-			bool stringOneBool = true;
-			bool stringTwoBool = true;
+			DateTime startDate = GetValidatedDate("start");
+			DateTime endDate = GetValidatedDate("end");
 
-			while (stringOneBool) 
+			while (startDate > endDate) 
 			{
-				string? startDateTime = _view.insertDateView("[green]Enter Session start (yyyy-MM-dd HH:mm:ss)[/]");
-				if (_validation.DateValidation(startDateTime))
+				Console.WriteLine("End date value cannot be earlier than start date value, press any key to re-enter session end value");
+				Console.ReadKey();
+				endDate = GetValidatedDate("end");
+			}
+
+			float time = _calculationsService.GetDuration(startDate, endDate);
+			Console.WriteLine($"The duration in Hours {time}");
+			Console.ReadKey();
+
+
+
+		}
+
+		public DateTime GetValidatedDate(string session)
+		{
+			Console.Clear();
+			bool dateTimeBool = true;
+			DateTime validatedDate = new DateTime();
+
+			while (dateTimeBool)
+			{
+				string? dateTime = _view.insertDateView($"[green]Enter Session {session} (yyyy-MM-dd HH:mm:ss)[/]");
+				if (_validation.DateValidation(dateTime))
 				{
-					stringOneBool = false;
+					validatedDate = _validation.ConvertToDateTime(dateTime);
+					dateTimeBool = false;
 					break;
 				}
-				else 
+				else
 				{
 					Console.Clear();
 					Console.WriteLine("Please enter date in correct format (yyyy-MM-dd HH:mm:ss)");
 					Console.WriteLine("Press Any key to retry)");
-					Console.ReadLine();	
-					ManualInsert();
+					Console.ReadLine();
 				}
 			}
-
-			Console.WriteLine("step 3");
-			Console.ReadKey();
-
-
+			return validatedDate;
 		}
 
 		public void viewData() 
