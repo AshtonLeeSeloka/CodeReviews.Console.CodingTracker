@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-	internal class CalculationsService
+	public class CalculationsService
 	{
 		public int GetDuration(string startDate, string endDate) 
 		{

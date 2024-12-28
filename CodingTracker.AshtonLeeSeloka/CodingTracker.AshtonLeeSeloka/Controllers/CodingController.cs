@@ -13,6 +13,7 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 	public class CodingController
 	{
 		private DataService _dataService = new DataService();
+		private ValidationService _validation = new ValidationService();
 		private View _view = new View();
 
 		public void InsertSession()
@@ -23,8 +24,7 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			switch (selection) 
 			{
 				case MenuInsert.Manually_Record_Session:
-					Console.WriteLine("smile bitch");
-					Console.ReadKey();
+					ManualInsert();
 					break;
 				case MenuInsert.Start_Timer:
 					break;
@@ -32,11 +32,37 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 					break;
 			}
 
+		}
 
-			//var startDate = AnsiConsole.Ask<string>("[green]Enter Session start (yyyy-mm-dd HH:mm:ss)[/]");
-			//var endDate = AnsiConsole.Ask<string>("[green]Enter Session End (yyyy-mm-dd HH:mm:ss)[/]");
-			//int test = 5;
-			//_dataService.Insert(startDate, endDate, test);
+		public void ManualInsert() 
+		{
+			
+			
+			bool stringOneBool = true;
+			bool stringTwoBool = true;
+
+			while (stringOneBool) 
+			{
+				string? startDateTime = _view.insertDateView("[green]Enter Session start (yyyy-MM-dd HH:mm:ss)[/]");
+				if (_validation.DateValidation(startDateTime))
+				{
+					stringOneBool = false;
+					break;
+				}
+				else 
+				{
+					Console.Clear();
+					Console.WriteLine("Please enter date in correct format (yyyy-MM-dd HH:mm:ss)");
+					Console.WriteLine("Press Any key to retry)");
+					Console.ReadLine();	
+					ManualInsert();
+				}
+			}
+
+			Console.WriteLine("step 3");
+			Console.ReadKey();
+
+
 		}
 
 		public void viewData() 

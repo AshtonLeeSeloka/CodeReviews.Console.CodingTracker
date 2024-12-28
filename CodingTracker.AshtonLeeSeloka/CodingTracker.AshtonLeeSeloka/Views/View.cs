@@ -22,6 +22,16 @@ namespace CodingTracker.AshtonLeeSeloka.Views
 			return selectedOption;
 		}
 
+		public string insertDateView(string message) 
+		{
+			string dateValue = AnsiConsole.Ask<string>(message);
+			
+			
+			return dateValue;
+		}
+
+
+
 		public void DisplaySessionView(List<CodingSession> sessions) 
 		{
 			Console.Clear();

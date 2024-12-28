@@ -5,15 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spectre.Console;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Services
 {
-	internal class ValidationService
+	public class ValidationService
 	{
-		public string dateFormat = "yyyy-mm-dd HH:mm:ss";
-		CultureInfo culture = new CultureInfo("en-UK");
-
-
+		public string dateFormat = "yyyy-MM-dd HH:mm:ss";
+		CultureInfo culture = new CultureInfo("en-US");
 
 		public bool DateValidation(string date) 
 		{
@@ -23,6 +22,12 @@ namespace Services
 				return false;
 		}
 
-		 
+		public DateTime ConvertToDateTime(string validatedDate)
+		{
+			DateTime dateTime = DateTime.ParseExact(validatedDate, dateFormat, culture, DateTimeStyles.None);
+			return dateTime;
+		}
+
+
 	}
 }
