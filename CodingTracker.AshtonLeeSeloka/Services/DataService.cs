@@ -47,11 +47,11 @@ namespace Services
 
 		}
 
-		public void Insert(string initial, string final, int period)
+		public void Insert(string startTime, string endTime, int duration)
 		{
 			var sqlCommand = "INSERT INTO Coding_Sessions (StartTime, EndTime, Duration) VALUES (@StartTime, @EndTime, @Duration)";
 			var connection = new SqliteConnection(_DBConnectionString);
-			connection.Execute(sqlCommand, new { StartTime = initial, EndTime = final, Duration = period});
+			connection.Execute(sqlCommand, new { StartTime = startTime, EndTime = endTime, Duration = duration});
 			Console.WriteLine("Entry inserted Succesfully Press Any Key to exit");
 			Console.ReadKey();
 		}
@@ -61,7 +61,7 @@ namespace Services
 			throw new NotImplementedException();
 		}
 
-		public List<CodingSession> ViewSessions()
+		public List<CodingSession> GetAllSessions()
 		{
 
 			Sessions.Clear();

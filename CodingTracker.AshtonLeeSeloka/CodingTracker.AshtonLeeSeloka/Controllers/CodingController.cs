@@ -23,7 +23,7 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 		public void viewData() 
 		{
 			Console.Clear();
-			List<CodingSession> codingSessions =_dataService.ViewSessions();
+			List<CodingSession> codingSessions =_dataService.GetAllSessions();
 
 			var table = new Table();
 			table.Border(TableBorder.Rounded);
@@ -47,5 +47,18 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			AnsiConsole.WriteLine("\nPress any Key to exit");
 			Console.ReadKey();
 		}
+		public void DeleteSession()
+		{
+			List<CodingSession> codingSessions = _dataService.GetAllSessions();
+
+			var SessionToDelete = AnsiConsole.Prompt(
+				new SelectionPrompt<CodingSession>()
+				.Title("Select Session to [red]Remove[/]")
+				.UseConverter(s => $"[yellow]Session ID: {s.Id}, Start Time: {s.StartTime}, End Time: {s.EndTime} with duration of {s.Duration} minutes[/]")
+				.AddChoices(codingSessions));
+
+		}
+	
+	
 	}
 }

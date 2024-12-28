@@ -32,6 +32,7 @@ internal class UserInterface
 				case MenuOptions.Update_Coding_Session:
 					break;
 				case MenuOptions.Delete_Coding_Session:
+					controller.DeleteSession();
 					break;
 				case MenuOptions.Generate_Report:
 					break;
