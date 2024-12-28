@@ -30,6 +30,7 @@ internal class UserInterface
 					controller.InsertSession();
 					break;
 				case MenuOptions.Update_Coding_Session:
+					controller.UpdateSession();
 					break;
 				case MenuOptions.Delete_Coding_Session:
 					controller.DeleteSession();

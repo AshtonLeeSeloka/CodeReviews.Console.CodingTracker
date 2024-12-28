@@ -22,17 +22,26 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			int test = 5;
 			_dataService.Insert(startDate, endDate, test);
 		}
+
 		public void viewData() 
 		{
 			Console.Clear();
 			List<CodingSession> codingSessions =_dataService.GetAllSessions();
 			_view.DisplaySessionView(codingSessions);
 		}
+
 		public void DeleteSession()
 		{
 			List<CodingSession> codingSessions = _dataService.GetAllSessions();
 			CodingSession sessionToDelete = _view.DeleteSessionView(codingSessions);
 			_dataService.Delete(sessionToDelete);
+		}
+
+		public void UpdateSession() 
+		{
+			List<CodingSession> codingSessions = _dataService.GetAllSessions();
+			CodingSession sessionToUpdate = _view.UpdateSessionView(codingSessions);
+			_dataService.Update(sessionToUpdate);
 		}
 	
 	

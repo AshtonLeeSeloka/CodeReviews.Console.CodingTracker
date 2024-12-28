@@ -48,5 +48,17 @@ namespace CodingTracker.AshtonLeeSeloka.Views
 
 			return SessionToDelete;
 		}
+
+		public CodingSession UpdateSessionView(List<CodingSession> sessions) 
+		{
+			CodingSession SessionToDelete = AnsiConsole.Prompt(
+			new SelectionPrompt<CodingSession>()
+			.Title("Select Session to [green]Update[/]")
+			.UseConverter(s => $"[yellow]Session ID: {s.Id}, Start Time: {s.StartTime}, End Time: {s.EndTime} with duration of {s.Duration} minutes[/]")
+			.AddChoices(sessions));
+
+			return SessionToDelete;
+
+		}
 	}
 }
