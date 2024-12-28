@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using CodingTracker.AshtonLeeSeloka.Models;
+using Microsoft.Extensions.Hosting;
 using ServiceContracts;
 using Services;
 using Spectre.Console;
@@ -11,13 +12,6 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 	{
 		private DataService _dataService = new DataService();
 
-		//public CodingController(IDataService dataService)
-		//{
-		//	_dataService = dataService;
-		//}
-
-		
-
 		public void InsertSession()
 		{
 			Console.Clear();
@@ -26,11 +20,32 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			int test = 5;
 			_dataService.Insert(startDate, endDate, test);
 		}
-
 		public void viewData() 
 		{
-			_dataService.ViewSessions();
-		
+			Console.Clear();
+			List<CodingSession> codingSessions =_dataService.ViewSessions();
+
+			var table = new Table();
+			table.Border(TableBorder.Rounded);
+
+			table.AddColumn("[green]Id[/]");
+			table.AddColumn("[green]Start Time[/]");
+			table.AddColumn("[green]End Time[/]");
+			table.AddColumn("[green]Duration[/]");
+
+			foreach (var codingSession in codingSessions) 
+			{
+				table.AddRow(
+					$"[cyan]{codingSession.Id.ToString()}[/]",
+					$"[yellow] {codingSession.StartTime}[/]",
+					$"[yellow] {codingSession.EndTime}[/]",
+					$"[yellow] {codingSession.Duration}[/]"
+				);
+			}
+
+			AnsiConsole.Write(table);
+			AnsiConsole.WriteLine("\nPress any Key to exit");
+			Console.ReadKey();
 		}
 	}
 }

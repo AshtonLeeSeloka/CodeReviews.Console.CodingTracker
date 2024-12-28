@@ -1,4 +1,6 @@
-﻿namespace ServiceContracts
+﻿using CodingTracker.AshtonLeeSeloka.Models;
+
+namespace ServiceContracts
 {
 	public interface IDataService
 	{
@@ -6,7 +8,7 @@
 		public void Insert(string initial,string final, int period);
 		public void Delete();
 		public void Update();
-		public List<CodingSession> ViewSessions()
+		public List<CodingSession> ViewSessions();
 
 	}
 }
