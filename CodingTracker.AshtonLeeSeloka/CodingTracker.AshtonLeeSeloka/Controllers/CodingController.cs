@@ -1,4 +1,5 @@
 ﻿using CodingTracker.AshtonLeeSeloka.Models;
+using CodingTracker.AshtonLeeSeloka.Views;
 using Microsoft.Extensions.Hosting;
 using ServiceContracts;
 using Services;
@@ -11,6 +12,7 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 	public class CodingController
 	{
 		private DataService _dataService = new DataService();
+		private View view = new View();
 
 		public void InsertSession()
 		{
@@ -24,28 +26,8 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 		{
 			Console.Clear();
 			List<CodingSession> codingSessions =_dataService.GetAllSessions();
-
-			var table = new Table();
-			table.Border(TableBorder.Rounded);
-
-			table.AddColumn("[green]Id[/]");
-			table.AddColumn("[green]Start Time[/]");
-			table.AddColumn("[green]End Time[/]");
-			table.AddColumn("[green]Duration[/]");
-
-			foreach (var codingSession in codingSessions) 
-			{
-				table.AddRow(
-					$"[cyan]{codingSession.Id.ToString()}[/]",
-					$"[yellow] {codingSession.StartTime}[/]",
-					$"[yellow] {codingSession.EndTime}[/]",
-					$"[yellow] {codingSession.Duration}[/]"
-				);
-			}
-
-			AnsiConsole.Write(table);
-			AnsiConsole.WriteLine("\nPress any Key to exit");
-			Console.ReadKey();
+			view.ViewSessions(codingSessions);
+			
 		}
 		public void DeleteSession()
 		{
