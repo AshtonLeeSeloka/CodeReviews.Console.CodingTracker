@@ -25,7 +25,16 @@
 
 ![Table Example](https://github.com/AshtonLeeSeloka/CodeReviews.Console.CodingTracker/blob/5d06ca15a2ca279b83a74ebccf74dc6e58aa422d/CodingTracker.AshtonLeeSeloka/CodingTracker.AshtonLeeSeloka/wwwRoot/Screenshot%202024-12-29%20203043.png)
    
-
+* Database CRUD operations using Dapper.
+  - Time and Date information can be: 
+    -Captured and saved to the database.
+    -Modified.
+    -Deleted
+    -Inserted
+    
+* User Input Validation
+  -User Input is validated before any operations are performed against input.
+  -The TryParseExact() methood is used to ensure compliance with required format of yyyy/MM/dd HH:mm:ss
 ## Lessons Learnt
 
 ## Resources
