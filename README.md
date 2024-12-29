@@ -20,6 +20,8 @@
   - User may interact with the console using arrow keys
   - Tables are utilised to neatly display information
   - Use of colours to emphasis information
+ 
+  ![UI Example one](https://github.com/AshtonLeeSeloka/CodeReviews.Console.CodingTracker/blob/5d06ca15a2ca279b83a74ebccf74dc6e58aa422d/CodingTracker.AshtonLeeSeloka/CodingTracker.AshtonLeeSeloka/wwwRoot/Screenshot%202024-12-29%20203006.png)
    
 
 ## Lessons Learnt
