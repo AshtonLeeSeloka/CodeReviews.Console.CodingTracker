@@ -27,10 +27,10 @@
    
 * Database CRUD operations using Dapper.
   - Time and Date information can be: 
-    -Captured and saved to the database.
-    -Modified.
-    -Deleted
-    -Inserted
+    - Captured and saved to the database.
+    - Modified.
+    - Deleted
+    - Inserted
     
 * User Input Validation
   -User Input is validated before any operations are performed against input.
