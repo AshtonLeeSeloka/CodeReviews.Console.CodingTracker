@@ -44,21 +44,22 @@
   
 ## Lessons Learnt
 
-### Working with DateTime
+#### Working with DateTime
 - I experienced some challenges in correctly formatting and converting DateTime objects to strings and vise versa.
 - Through this project I am now more capable of both converting and performing operations agains DateTime objects.
 
-### Dapper
+#### Dapper
 - This is my first project using Dapper, I found myself a little confused in the initial stages.
 - After reading some documentation I can see the benefit of an ORM like dapper over ADO.NET.
 - Dapper Greatly simplifies All Crud operations and I am more confident in using it for my future project.
 
-### Spectre.Console
+#### Spectre.Console
 - Utilising the basic functionality of Spectre.Console to Display information.
 
-## Resources
+### Resources
 * Seperation of concerns [Article](https://www.thecsharpacademy.com/article/30005/separation-of-concerns-csharp)
 * OOP [Crash Course](https://www.thecsharpacademy.com/course/1/article/1/500000/false)
 * Spectre Console [Documentation](https://spectreconsole.net/)
 * Dapper ORM [Documentation](https://www.learndapper.com/)
-* 
+* Medium Article [DateTime in C#](https://medium.com/@Has_San/datetime-in-c-1aef47db4feb)
+* Microsoft [DateTime Documentation](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-9.0)
