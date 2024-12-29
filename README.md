@@ -33,8 +33,8 @@
     - Inserted
     
 * User Input Validation
-  -User Input is validated before any operations are performed against input.
-  -The TryParseExact() methood is used to ensure compliance with required format of yyyy/MM/dd HH:mm:ss
+  - User Input is validated before any operations are performed against input.
+  - The TryParseExact() methood is used to ensure compliance with required format of yyyy/MM/dd HH:mm:ss
 ## Lessons Learnt
 
 ## Resources
