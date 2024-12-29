@@ -14,12 +14,12 @@
 ## Features
 * SQLite Database
   - A SQLite Database is used to store all user Inputs.
-  - The Program automatically creates a Databse if one is not present
+  - The Program automatically creates a Databse if one is not present.
     
 * Console UI created using Spectre.Console
-  - User may interact with the console using arrow keys
-  - Tables are utilised to neatly display information
-  - Use of colours to emphasis information
+  - User may interact with the console using arrow keys.
+  - Tables are utilised to neatly display information.
+  - Use of colours to emphasis information.
  
 ![Main Menu UI](https://github.com/AshtonLeeSeloka/CodeReviews.Console.CodingTracker/blob/5d06ca15a2ca279b83a74ebccf74dc6e58aa422d/CodingTracker.AshtonLeeSeloka/CodingTracker.AshtonLeeSeloka/wwwRoot/Screenshot%202024-12-29%20203006.png)
 
@@ -29,12 +29,19 @@
   - Time and Date information can be: 
     - Captured and saved to the database.
     - Modified.
-    - Deleted
-    - Inserted
+    - Deleted.
+    - Inserted.
     
 * User Input Validation
   - User Input is validated before any operations are performed against input.
-  - The TryParseExact() methood is used to ensure compliance with required format of yyyy/MM/dd HH:mm:ss
+  - The TryParseExact() methood is used to ensure compliance with required format of yyyy/MM/dd HH:mm:ss.
+
+* Reporting of user Data
+  - Calculate sum and average inputs for all data.
+  - Calculate sum and average over user specified period.
+  - Values are displayed in atable format using Spectre.Console.
+ 
+  
 ## Lessons Learnt
 
 ## Resources
