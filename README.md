@@ -56,7 +56,7 @@
 #### Spectre.Console
 - Utilising the basic functionality of Spectre.Console to Display information.
 
-### Resources
+## Resources
 * Seperation of concerns [Article](https://www.thecsharpacademy.com/article/30005/separation-of-concerns-csharp)
 * OOP [Crash Course](https://www.thecsharpacademy.com/course/1/article/1/500000/false)
 * Spectre Console [Documentation](https://spectreconsole.net/)
