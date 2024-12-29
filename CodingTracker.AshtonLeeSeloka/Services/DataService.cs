@@ -1,19 +1,17 @@
-﻿using Microsoft.Data.Sqlite;
-using ServiceContracts;
-using System.Configuration;
+﻿using CodingTracker.AshtonLeeSeloka.Models;
 using Dapper;
-using CodingTracker.AshtonLeeSeloka.Models;
-using Spectre.Console;
+using Microsoft.Data.Sqlite;
+using System.Configuration;
 
 
 namespace Services
 {
-	public class DataService 
+	public class DataService
 	{
 		private string? _DBConnectionString = ConfigurationManager.AppSettings.Get("DBConnectionString");
 		private List<CodingSession> _Sessions = new List<CodingSession>();
 		private CalculationsService _CalculationsService = new CalculationsService();
-		private ValidationService _Validation = new ValidationService();	
+		private ValidationService _Validation = new ValidationService();
 
 
 		/// <summary>
@@ -21,9 +19,9 @@ namespace Services
 		/// </summary>
 		public void CreateDB()
 		{
-			try 
+			try
 			{
-				using (var connection = new SqliteConnection(_DBConnectionString)) 
+				using (var connection = new SqliteConnection(_DBConnectionString))
 				{
 					connection.Open();
 					var tableCmd = connection.CreateCommand();
@@ -34,15 +32,15 @@ namespace Services
 																Duration(Hours) FLOAT)";
 					tableCmd.ExecuteNonQuery();
 				}
-			} 
-			catch (Exception ex) 
+			}
+			catch (Exception ex)
 			{
 				Console.Clear();
 				Console.WriteLine(ex.Message);
 				Console.WriteLine("Type 0 to exit");
 
 			}
-		
+
 		}
 
 		/// <summary>
@@ -58,7 +56,7 @@ namespace Services
 
 			Console.WriteLine("\nDeletion of Coding session succesful, Type any Key to exit");
 			Console.ReadLine();
-			
+
 		}
 
 		/// <summary>
@@ -71,7 +69,7 @@ namespace Services
 		{
 			var sqlCommand = "INSERT INTO Coding_Sessions (StartTime, EndTime, Duration) VALUES (@StartTime, @EndTime, @Duration)";
 			var connection = new SqliteConnection(_DBConnectionString);
-			connection.Execute(sqlCommand, new { StartTime = startTime, EndTime = endTime, Duration = duration});
+			connection.Execute(sqlCommand, new { StartTime = startTime, EndTime = endTime, Duration = duration });
 			Console.WriteLine("\nEntry inserted Succesfully Press Any Key to exit");
 			Console.ReadKey();
 		}
@@ -82,7 +80,7 @@ namespace Services
 		/// <param name="session">Object to modify</param>
 		public void Update(CodingSession session)
 		{
-			
+
 			DateTime startDate = _Validation.GetValidatedDate("start");
 			DateTime endDate = _Validation.GetValidatedDate("end");
 
@@ -93,11 +91,11 @@ namespace Services
 				endDate = _Validation.GetValidatedDate("end");
 			}
 
-			float Duration =(float) System.Math.Round( _CalculationsService.GetDuration(startDate, endDate),2);
+			float Duration = (float)System.Math.Round(_CalculationsService.GetDuration(startDate, endDate), 2);
 
 			var sqlCommand = "UPDATE coding_Sessions SET StartTime = @StartTime,EndTime = @EndTime, Duration = @Duration WHERE Id = @ID ";
 			var connection = new SqliteConnection(_DBConnectionString);
-			connection.Execute(sqlCommand, new { ID = session.Id, StartTime  = startDate.ToString(), EndTime = endDate.ToString(), Duration = Duration });
+			connection.Execute(sqlCommand, new { ID = session.Id, StartTime = startDate.ToString(), EndTime = endDate.ToString(), Duration = Duration });
 
 			Console.WriteLine("\nUpdating of Coding session succesful, Type any Key to exit");
 			Console.ReadLine();
@@ -111,14 +109,14 @@ namespace Services
 		{
 
 			_Sessions.Clear();
-			
+
 			var sqlCommand = "SELECT * FROM Coding_Sessions";
 			var connection = new SqliteConnection(_DBConnectionString);
 			var codingSessions = connection.Query<CodingSession>(sqlCommand);
 
-			foreach (var codingSession in codingSessions) 
+			foreach (var codingSession in codingSessions)
 			{
-				
+
 				_Sessions.Add(new CodingSession()
 				{
 					Id = codingSession.Id,

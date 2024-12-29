@@ -1,5 +1,4 @@
 ﻿using CodingTracker.AshtonLeeSeloka.Controllers;
-using ServiceContracts;
 using Spectre.Console;
 using static CodingTracker.AshtonLeeSeloka.Models.MenuItems;
 namespace CodingTracker.AshtonLeeSeloka.UserInterface;
@@ -7,12 +6,12 @@ namespace CodingTracker.AshtonLeeSeloka.UserInterface;
 internal class UserInterface
 {
 
-	public void MainMenu() 
+	public void MainMenu()
 	{
 		CodingController controller = new CodingController();
 
 
-		while (true) 
+		while (true)
 		{
 			AnsiConsole.Clear();
 			var userSelection = AnsiConsole.Prompt(
@@ -21,7 +20,7 @@ internal class UserInterface
 				.AddChoices(Enum.GetValues<MenuOptions>())
 			 );
 
-			switch (userSelection) 
+			switch (userSelection)
 			{
 				case MenuOptions.View_Coding_Sessions:
 					controller.ViewData();

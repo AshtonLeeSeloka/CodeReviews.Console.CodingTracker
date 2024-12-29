@@ -1,10 +1,7 @@
 ﻿using CodingTracker.AshtonLeeSeloka.Models;
 using CodingTracker.AshtonLeeSeloka.Views;
-using Microsoft.Extensions.Hosting;
-using ServiceContracts;
 using Services;
 using Spectre.Console;
-using System.Collections;
 using static CodingTracker.AshtonLeeSeloka.Models.MenuItems;
 
 
@@ -22,7 +19,7 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			Console.Clear();
 			var selection = _view.InsertSessionView();
 
-			switch (selection) 
+			switch (selection)
 			{
 				case MenuInsert.Manually_Record_Session:
 					ManualInsert();
@@ -36,12 +33,12 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 
 		}
 
-		public void ManualInsert() 
+		public void ManualInsert()
 		{
 			DateTime startDate = _validation.GetValidatedDate("start");
 			DateTime endDate = _validation.GetValidatedDate("end");
 
-			while (startDate > endDate) 
+			while (startDate > endDate)
 			{
 				Console.WriteLine("End date value cannot be earlier than start date value, press any key to re-enter session end value");
 				Console.ReadKey();
@@ -49,9 +46,9 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			}
 
 			float time = _calculationsService.GetDuration(startDate, endDate);
-			_dataService.Insert(startDate.ToString(), endDate.ToString(), (float)System.Math.Round(time,2));
-			
-			
+			_dataService.Insert(startDate.ToString(), endDate.ToString(), (float)System.Math.Round(time, 2));
+
+
 		}
 
 		public void TimerInsert()
@@ -70,8 +67,8 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			string startTimeAsString = startTime.ToString("yyyy/MM/dd HH:mm:ss", new System.Globalization.CultureInfo("en-US"));
 			string endTimeAsString = startTime.ToString("yyyy/MM/dd HH:mm:ss", new System.Globalization.CultureInfo("en-US"));
 
-			float duation = (float) System.Math.Round( _calculationsService.GetDuration(startTime, endTime),2);
-			_dataService.Insert(startTimeAsString,endTimeAsString,duation);
+			float duation = (float)System.Math.Round(_calculationsService.GetDuration(startTime, endTime), 2);
+			_dataService.Insert(startTimeAsString, endTimeAsString, duation);
 			AnsiConsole.WriteLine($"Succesfully inserted session with duration of {duation}");
 			Console.ReadKey();
 		}
@@ -90,7 +87,7 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 					DateDescendingSessions(codingSessions);
 					break;
 				case MenuViewData.View_in_ascending_order:
-					
+
 					DateAscendingSession(codingSessions);
 					break;
 				case MenuViewData.Back:
@@ -99,7 +96,7 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 
 		}
 
-		public void DateAscendingSession(List<CodingSession> codingSessions) 
+		public void DateAscendingSession(List<CodingSession> codingSessions)
 		{
 			codingSessions.Sort((x, y) => x.StartTime.CompareTo(y.StartTime));
 			_view.DisplaySessionView(codingSessions);
@@ -111,12 +108,12 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 		public void DateDescendingSessions(List<CodingSession> codingSessions)
 		{
 
-			codingSessions.Sort((x, y) => DateTime.Parse( y.StartTime).CompareTo(DateTime.Parse(x.StartTime)));
-			 //codingSessions.OrderByDescending(x => DateTime.Parse(x.StartTime));
+			codingSessions.Sort((x, y) => DateTime.Parse(y.StartTime).CompareTo(DateTime.Parse(x.StartTime)));
+			//codingSessions.OrderByDescending(x => DateTime.Parse(x.StartTime));
 			_view.DisplaySessionView(codingSessions);
 			Console.WriteLine("Press any key to return");
 			Console.ReadKey();
-		
+
 		}
 
 		public void DeleteSession()
@@ -126,19 +123,19 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			_dataService.Delete(sessionToDelete);
 		}
 
-		public void UpdateSession() 
+		public void UpdateSession()
 		{
 			List<CodingSession> codingSessions = _dataService.GetAllSessions();
 			CodingSession sessionToUpdate = _view.UpdateSessionView(codingSessions);
 			_dataService.Update(sessionToUpdate);
 		}
 
-		public void GenerateReport() 
+		public void GenerateReport()
 		{
-			Console.Clear ();
+			Console.Clear();
 			var selection = _view.ReportMenuView();
 
-			switch (selection) 
+			switch (selection)
 			{
 				case MenuItems.MenuReport.View_All_Data:
 					ReportAllSessions();
@@ -147,10 +144,10 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 					ReportRangeSessions();
 					break;
 			}
-		
+
 		}
 
-		public void ReportAllSessions() 
+		public void ReportAllSessions()
 		{
 			List<CodingSession> codingSessions = _dataService.GetAllSessions();
 			codingSessions.Sort((x, y) => x.StartTime.CompareTo(y.StartTime));
@@ -158,12 +155,12 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			_view.DisplaySessionView(codingSessions);
 
 			float? sum = _calculationsService.CalculateSum(codingSessions);
-			float? avg =_calculationsService.CalculateAverage(codingSessions);
+			float? avg = _calculationsService.CalculateAverage(codingSessions);
 			int entries = codingSessions.Count();
 			string? startDate = codingSessions[0].StartTime;
-			string? endDate = codingSessions[(entries-1)].EndTime;
+			string? endDate = codingSessions[(entries - 1)].EndTime;
 
-			_view.DisplayAllReportDataView(startDate,endDate,entries,avg,sum);
+			_view.DisplayAllReportDataView(startDate, endDate, entries, avg, sum);
 		}
 
 		public void ReportRangeSessions()
@@ -179,7 +176,7 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 				endDate = _validation.GetValidatedDate("end");
 			}
 
-			for (int i = 0; i < session.Count; i++) 
+			for (int i = 0; i < session.Count; i++)
 			{
 				DateTime iStart = DateTime.Parse(session[i].StartTime);
 				DateTime iEnd = DateTime.Parse(session[i].StartTime);
