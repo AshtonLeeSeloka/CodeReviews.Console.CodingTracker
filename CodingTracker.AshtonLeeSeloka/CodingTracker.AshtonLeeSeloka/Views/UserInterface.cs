@@ -5,11 +5,9 @@ namespace CodingTracker.AshtonLeeSeloka.UserInterface;
 
 internal class UserInterface
 {
-
 	public void MainMenu()
 	{
 		CodingController controller = new CodingController();
-
 
 		while (true)
 		{

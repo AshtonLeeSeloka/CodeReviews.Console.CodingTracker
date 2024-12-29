@@ -1,56 +1,49 @@
 ﻿using Spectre.Console;
 using System.Globalization;
-namespace Services
+namespace Services;
+
+public class ValidationService
 {
-	public class ValidationService
+	public string dateFormat = "yyyy-MM-dd HH:mm:ss";
+	CultureInfo culture = new CultureInfo("en-US");
+
+	public bool DateValidation(string date)
 	{
+		if (DateTime.TryParseExact(date, dateFormat, culture, DateTimeStyles.None, out _))
+			return true;
+		else
+			return false;
+	}
 
-		public string dateFormat = "yyyy-MM-dd HH:mm:ss";
-		CultureInfo culture = new CultureInfo("en-US");
+	public DateTime ConvertToDateTime(string validatedDate)
+	{
+		DateTime dateTime = DateTime.ParseExact(validatedDate, dateFormat, culture, DateTimeStyles.None);
+		return dateTime;
+	}
 
-		public bool DateValidation(string date)
+	public DateTime GetValidatedDate(string session)
+	{
+		Console.Clear();
+		bool dateTimeBool = true;
+		DateTime validatedDate = new DateTime();
+
+		while (dateTimeBool)
 		{
-			if (DateTime.TryParseExact(date, dateFormat, culture, DateTimeStyles.None, out _))
-				return true;
-			else
-				return false;
-		}
-
-		public DateTime ConvertToDateTime(string validatedDate)
-		{
-			DateTime dateTime = DateTime.ParseExact(validatedDate, dateFormat, culture, DateTimeStyles.None);
-			return dateTime;
-		}
-
-		public DateTime GetValidatedDate(string session)
-		{
-			Console.Clear();
-			bool dateTimeBool = true;
-			DateTime validatedDate = new DateTime();
-
-			while (dateTimeBool)
+			string? dateTime = AnsiConsole.Ask<string>($"[green]Enter Session {session} (yyyy-MM-dd HH:mm:ss)[/]");
+			if (DateValidation(dateTime))
 			{
-				string? dateTime = AnsiConsole.Ask<string>($"[green]Enter Session {session} (yyyy-MM-dd HH:mm:ss)[/]");
-				if (DateValidation(dateTime))
-				{
-					validatedDate = ConvertToDateTime(dateTime);
-					dateTimeBool = false;
-					break;
-				}
-				else
-				{
-					Console.Clear();
-					Console.WriteLine("Please enter date in correct format (yyyy-MM-dd HH:mm:ss)");
-					Console.WriteLine("Press Any key to retry)");
-					Console.ReadLine();
-				}
+				validatedDate = ConvertToDateTime(dateTime);
+				dateTimeBool = false;
+				break;
 			}
-			return validatedDate;
+			else
+			{
+				Console.Clear();
+				Console.WriteLine("Please enter date in correct format (yyyy-MM-dd HH:mm:ss)");
+				Console.WriteLine("Press Any key to retry)");
+				Console.ReadLine();
+			}
 		}
-
-
-
-
-
+		return validatedDate;
 	}
 }
