@@ -24,7 +24,7 @@ internal class UserInterface
 			switch (userSelection) 
 			{
 				case MenuOptions.View_Coding_Sessions:
-					controller.viewData();
+					controller.ViewData();
 					break;
 				case MenuOptions.Insert_New_Session:
 					controller.InsertSession();

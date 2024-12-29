@@ -76,13 +76,47 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			Console.ReadKey();
 		}
 
-		public void viewData() 
+		public void ViewData()
 		{
 			Console.Clear();
-			List<CodingSession> codingSessions =_dataService.GetAllSessions();
+			List<CodingSession> codingSessions = _dataService.GetAllSessions();
 			_view.DisplaySessionView(codingSessions);
-			AnsiConsole.WriteLine("\nPress any Key to exit");
+
+			var selection = _view.DisplayViewSelection();
+
+			switch (selection)
+			{
+				case MenuViewData.View_in_descending_order:
+					DateDescendingSessions(codingSessions);
+					break;
+				case MenuViewData.View_in_ascending_order:
+					
+					DateAscendingSession(codingSessions);
+					break;
+				case MenuViewData.Back:
+					break;
+			}
+
+		}
+
+		public void DateAscendingSession(List<CodingSession> codingSessions) 
+		{
+			codingSessions.Sort((x, y) => x.StartTime.CompareTo(y.StartTime));
+			_view.DisplaySessionView(codingSessions);
+			Console.WriteLine("Press any key to return");
 			Console.ReadKey();
+
+		}
+
+		public void DateDescendingSessions(List<CodingSession> codingSessions)
+		{
+
+			codingSessions.Sort((x, y) => DateTime.Parse( y.StartTime).CompareTo(DateTime.Parse(x.StartTime)));
+			 //codingSessions.OrderByDescending(x => DateTime.Parse(x.StartTime));
+			_view.DisplaySessionView(codingSessions);
+			Console.WriteLine("Press any key to return");
+			Console.ReadKey();
+		
 		}
 
 		public void DeleteSession()

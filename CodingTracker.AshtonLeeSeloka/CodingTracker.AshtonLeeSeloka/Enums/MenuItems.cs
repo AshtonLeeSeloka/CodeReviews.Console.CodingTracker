@@ -25,4 +25,24 @@ public class MenuItems
         View_All_Data,
         Back
     }
+
+    public enum MenuViewData 
+    {
+        View_in_ascending_order,
+        View_in_descending_order,
+        Back
+    
+    }
+
+	public enum MenuDescending
+	{
+		View_in_ascending_order,
+		Back
+	}
+
+	public enum MenuAscending
+	{
+		View_in_descending_order,
+		Back
+	}
 }

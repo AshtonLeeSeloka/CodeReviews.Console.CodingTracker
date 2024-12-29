@@ -22,6 +22,39 @@ namespace CodingTracker.AshtonLeeSeloka.Views
 			return selectedOption;
 		}
 
+		public MenuItems.MenuViewData DisplayViewSelection() 
+		{
+			var selectedOption = AnsiConsole.Prompt(
+			new SelectionPrompt<MenuViewData>()
+			.Title("[green]Select how you would like to filter data[/]")
+			.AddChoices(Enum.GetValues<MenuViewData>())
+			);
+
+			return selectedOption;
+		}
+
+		public MenuItems.MenuAscending DisplayViewSelectionAscending()
+		{
+			var selectedOption = AnsiConsole.Prompt(
+			new SelectionPrompt<MenuAscending>()
+			.Title("[green]Select how you would like to filter data[/]")
+			.AddChoices(Enum.GetValues<MenuAscending>())
+			);
+
+			return selectedOption;
+		}
+
+		public MenuItems.MenuDescending DisplayViewSelectionDecending()
+		{
+			var selectedOption = AnsiConsole.Prompt(
+			new SelectionPrompt<MenuDescending>()
+			.Title("[green]Select how you would like to filter data[/]")
+			.AddChoices(Enum.GetValues<MenuDescending>())
+			);
+
+			return selectedOption;
+		}
+
 		public string insertDateView(string message) 
 		{
 			string dateValue = AnsiConsole.Ask<string>(message);
@@ -59,6 +92,8 @@ namespace CodingTracker.AshtonLeeSeloka.Views
 			AnsiConsole.Write(table);
 
 		}
+
+
 
 		public void DisplayAllReportDataView(string? startDate, string? endDate,int numberOfRecords, float? average, float? sum) 
 		{
