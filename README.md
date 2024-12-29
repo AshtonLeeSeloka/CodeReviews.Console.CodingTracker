@@ -21,7 +21,9 @@
   - Tables are utilised to neatly display information
   - Use of colours to emphasis information
  
-  ![UI Example one](https://github.com/AshtonLeeSeloka/CodeReviews.Console.CodingTracker/blob/5d06ca15a2ca279b83a74ebccf74dc6e58aa422d/CodingTracker.AshtonLeeSeloka/CodingTracker.AshtonLeeSeloka/wwwRoot/Screenshot%202024-12-29%20203006.png)
+![Main Menu UI](https://github.com/AshtonLeeSeloka/CodeReviews.Console.CodingTracker/blob/5d06ca15a2ca279b83a74ebccf74dc6e58aa422d/CodingTracker.AshtonLeeSeloka/CodingTracker.AshtonLeeSeloka/wwwRoot/Screenshot%202024-12-29%20203006.png)
+
+![Table Example](https://github.com/AshtonLeeSeloka/CodeReviews.Console.CodingTracker/blob/5d06ca15a2ca279b83a74ebccf74dc6e58aa422d/CodingTracker.AshtonLeeSeloka/CodingTracker.AshtonLeeSeloka/wwwRoot/Screenshot%202024-12-29%20203043.png)
    
 
 ## Lessons Learnt
