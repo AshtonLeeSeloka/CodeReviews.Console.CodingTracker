@@ -11,9 +11,10 @@ namespace Services
 		public float GetDuration(DateTime startDate, DateTime endDate) 
 		{
 			float time = (float)((endDate-startDate).TotalHours);
-			Console.WriteLine(time);
 			return time;
 		
 		}
+
+
 	}
 }

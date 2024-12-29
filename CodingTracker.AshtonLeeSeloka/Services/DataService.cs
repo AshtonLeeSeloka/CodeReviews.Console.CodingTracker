@@ -13,6 +13,7 @@ namespace Services
 		private string? _DBConnectionString = ConfigurationManager.AppSettings.Get("DBConnectionString");
 		private List<CodingSession> _Sessions = new List<CodingSession>();
 		private CalculationsService _CalculationsService = new CalculationsService();
+		private ValidationService _Validation = new ValidationService();	
 
 
 		/// <summary>
@@ -30,7 +31,7 @@ namespace Services
 																Id INTEGER PRIMARY KEY AUTOINCREMENT,
 																StartTime TEXT,
 																EndTime TEXT,
-																Duration INTEGER)";
+																Duration(Hours) FLOAT)";
 					tableCmd.ExecuteNonQuery();
 				}
 			} 
@@ -66,7 +67,7 @@ namespace Services
 		/// <param name="startTime">Session Start Time</param>
 		/// <param name="endTime">Session End Time</param>
 		/// <param name="duration">Duration of Session</param>
-		public void Insert(string startTime, string endTime, int duration)
+		public void Insert(string startTime, string endTime, float duration)
 		{
 			var sqlCommand = "INSERT INTO Coding_Sessions (StartTime, EndTime, Duration) VALUES (@StartTime, @EndTime, @Duration)";
 			var connection = new SqliteConnection(_DBConnectionString);
@@ -81,14 +82,22 @@ namespace Services
 		/// <param name="session">Object to modify</param>
 		public void Update(CodingSession session)
 		{
+			
+			DateTime startDate = _Validation.GetValidatedDate("start");
+			DateTime endDate = _Validation.GetValidatedDate("end");
 
-			string newStartTime =AnsiConsole.Ask<string>("[green]Enter Updated Session start (yyyy-mm-dd HH:mm:ss)[/]");
-			string newEndTime = AnsiConsole.Ask<string>("[green][green]Enter Updated Session End (yyyy-mm-dd HH:mm:ss)[/][/]");
-			//int Duration = _CalculationsService.GetDuration(newStartTime, newEndTime);
+			while (startDate > endDate)
+			{
+				Console.WriteLine("End date value cannot be earlier than start date value, press any key to re-enter session end value");
+				Console.ReadKey();
+				endDate = _Validation.GetValidatedDate("end");
+			}
+
+			float Duration =(float) System.Math.Round( _CalculationsService.GetDuration(startDate, endDate),2);
 
 			var sqlCommand = "UPDATE coding_Sessions SET StartTime = @StartTime,EndTime = @EndTime, Duration = @Duration WHERE Id = @ID ";
 			var connection = new SqliteConnection(_DBConnectionString);
-			connection.Execute(sqlCommand, new { ID = session.Id, StartTime  = newStartTime, EndTime = newEndTime/*, Duration = Duration*/ });
+			connection.Execute(sqlCommand, new { ID = session.Id, StartTime  = startDate.ToString(), EndTime = endDate.ToString(), Duration = Duration });
 
 			Console.WriteLine("\nUpdating of Coding session succesful, Type any Key to exit");
 			Console.ReadLine();

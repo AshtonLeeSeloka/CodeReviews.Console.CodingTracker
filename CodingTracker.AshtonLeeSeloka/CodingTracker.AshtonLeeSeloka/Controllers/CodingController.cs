@@ -28,6 +28,7 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 					ManualInsert();
 					break;
 				case MenuInsert.Start_Timer:
+					TimerInsert();
 					break;
 				case MenuInsert.Back:
 					break;
@@ -37,7 +38,6 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 
 		public void ManualInsert() 
 		{
-			
 			DateTime startDate = _validation.GetValidatedDate("start");
 			DateTime endDate = _validation.GetValidatedDate("end");
 
@@ -49,11 +49,24 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 			}
 
 			float time = _calculationsService.GetDuration(startDate, endDate);
-			Console.WriteLine($"The duration in Hours {time}");
+			_dataService.Insert(startDate.ToString(), endDate.ToString(), (float)System.Math.Round(time,2));
+			
+			
+		}
+
+		public void TimerInsert() 
+		{
+			AnsiConsole.WriteLine("Press [red]Any key[/] to start the timer");
+			Console.ReadKey();	
+			DateTime startTime = DateTime.Now;
+			AnsiConsole.WriteLine("Timer in Progress");
+			AnsiConsole.WriteLine("Press [red]Any key[/] to End the timer");
 			Console.ReadKey();
-
-
-
+			DateTime endTime = DateTime.Now;
+			float duation = (float) System.Math.Round( _calculationsService.GetDuration(startTime, endTime),2);
+			_dataService.Insert(startTime.ToString("yyyy-MM-dd HH:mm:ss"),endTime.ToString("yyyy-MM-dd HH:mm:ss"),duation);
+			AnsiConsole.WriteLine($"Succesfully inserted session with duration of {duation}");
+			Console.ReadKey();
 		}
 
 		public void viewData() 
