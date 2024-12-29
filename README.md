@@ -12,6 +12,10 @@
 - [x] Follow the DRY Principle, and avoid code repetition.
 
 ## Features
+- SQLite Database
+  -A SQLite Database is used to store all user Inputs.
+  -The Program automatically creates a Databse if one is not present
+   
 
 ## Lessons Learnt
 
