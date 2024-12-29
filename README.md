@@ -15,6 +15,11 @@
 * SQLite Database
   - A SQLite Database is used to store all user Inputs.
   - The Program automatically creates a Databse if one is not present
+    
+* Console UI created using Spectre.Console
+  - User may interact with the console using arrow keys
+  - Tables are utilised to neatly display information
+  - Use of colours to emphasis information
    
 
 ## Lessons Learnt
