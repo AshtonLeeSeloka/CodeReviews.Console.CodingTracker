@@ -38,14 +38,14 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 		public void ManualInsert() 
 		{
 			
-			DateTime startDate = GetValidatedDate("start");
-			DateTime endDate = GetValidatedDate("end");
+			DateTime startDate = _validation.GetValidatedDate("start");
+			DateTime endDate = _validation.GetValidatedDate("end");
 
 			while (startDate > endDate) 
 			{
 				Console.WriteLine("End date value cannot be earlier than start date value, press any key to re-enter session end value");
 				Console.ReadKey();
-				endDate = GetValidatedDate("end");
+				endDate = _validation.GetValidatedDate("end");
 			}
 
 			float time = _calculationsService.GetDuration(startDate, endDate);
@@ -54,32 +54,6 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 
 
 
-		}
-
-		public DateTime GetValidatedDate(string session)
-		{
-			Console.Clear();
-			bool dateTimeBool = true;
-			DateTime validatedDate = new DateTime();
-
-			while (dateTimeBool)
-			{
-				string? dateTime = _view.insertDateView($"[green]Enter Session {session} (yyyy-MM-dd HH:mm:ss)[/]");
-				if (_validation.DateValidation(dateTime))
-				{
-					validatedDate = _validation.ConvertToDateTime(dateTime);
-					dateTimeBool = false;
-					break;
-				}
-				else
-				{
-					Console.Clear();
-					Console.WriteLine("Please enter date in correct format (yyyy-MM-dd HH:mm:ss)");
-					Console.WriteLine("Press Any key to retry)");
-					Console.ReadLine();
-				}
-			}
-			return validatedDate;
 		}
 
 		public void viewData() 

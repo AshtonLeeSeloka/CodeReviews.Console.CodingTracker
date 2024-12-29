@@ -10,7 +10,7 @@ namespace Services
 	{
 		public float GetDuration(DateTime startDate, DateTime endDate) 
 		{
-			float time = Convert.ToInt32((endDate-startDate).TotalHours);
+			float time = (float)((endDate-startDate).TotalHours);
 			Console.WriteLine(time);
 			return time;
 		
