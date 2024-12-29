@@ -55,6 +55,7 @@ namespace CodingTracker.AshtonLeeSeloka.Controllers
 		{
 			AnsiConsole.WriteLine("Press Any key to start the timer");
 			Console.ReadKey();
+			Console.Clear();
 
 			DateTime startTime = DateTime.Now;
 
