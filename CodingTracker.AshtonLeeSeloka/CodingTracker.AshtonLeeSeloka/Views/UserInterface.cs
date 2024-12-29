@@ -36,6 +36,7 @@ internal class UserInterface
 					controller.DeleteSession();
 					break;
 				case MenuOptions.Generate_Report:
+					controller.GenerateReport();
 					break;
 				case MenuOptions.End_Application:
 					AnsiConsole.WriteLine("Good Bye");

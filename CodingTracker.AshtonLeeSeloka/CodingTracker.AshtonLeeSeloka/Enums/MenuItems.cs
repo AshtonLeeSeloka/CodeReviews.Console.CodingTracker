@@ -18,4 +18,11 @@ public class MenuItems
 		Start_Timer,
         Back
     }
+
+    public enum MenuReport 
+    {
+        Specify_Report_Range,
+        View_All_Data,
+        Back
+    }
 }
